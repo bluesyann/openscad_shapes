@@ -10,6 +10,10 @@
 // Global parameters
 // =======================
 
+// Parameter to adjust to the media thickness
+// setting it to 0 will match the orignial manufacturer's part
+media_thck   = 10;
+
 // Geometry
 r_round      = 5;   // Radius of rounded corners
 
@@ -17,16 +21,19 @@ length       = 51;  // Overall length of the object (Z)
 w_top        = 32;  // Width of the top part tied to the actuator (Y)
 w_bot        = 18;  // Width of the bottom part fixed to the build plate (Y)
 h_top        = 15;  // Height of the top part (X)
-h_bot        = 8;   // Height of the bottom part (X)
+h_bot_origin = 17;
+h_bot        = h_bot_origin-media_thck;   // Height of the bottom part (X) 15 ok
 
 // Horizontal holes (along Z)
 h_hole_r     = 2;
 h_hole_span  = 21;
+h_hole_shift = 5.5;
 
 // Vertical holes (along X)
 v_hole_r     = 2;
 v_hole_span  = 35;
 counterbore_r= 4;
+screw_depth  = 7;
 
 // Cutaway
 cut_ratio    = 0.7; // Fraction of total length removed by the cutaway
@@ -75,7 +82,6 @@ module profile() {
             translate([shift_bot_x, 0])
                 square([h_bot, w_bot], center = true);
         }
-        // (Reserved: if you ever want profile‑level cutouts)
     }
 }
 
@@ -90,7 +96,7 @@ module profile() {
 module horizontal_holes() {
     holes_length = 3 * length;
 
-    translate([0, -h_hole_span/2, -length])
+    translate([h_hole_shift-h_top/2, -h_hole_span/2, -length])
         union() {
             cylinder(h = holes_length, r = h_hole_r, $fn = 30);
 
@@ -154,12 +160,13 @@ module vertical_holes() {
 // =======================
 //
 // Two cylinders, symmetric in Z, going across the X dimension.
+// We need a thickness of (screw_depth) mm between the head and the buidplate face
 //
 module vertical_counterbores() {
-    holes_length = h_top;
+    holes_length = h_top+14;
 
     translate([
-        -holes_length/2,          // Center along X
+        -holes_length+h_bot+h_top/2-screw_depth,          // Center along X
         0,                        // Center along Y
         (length - v_hole_span)/2  // Position in Z
     ])
