@@ -36,5 +36,7 @@ Desoldering pump and spool holder. It’s very simple, but it does the job nicel
 - Desoldering pump tip radius
 - Desoldering pump body radius
 Add a bit of clearance to each parameter (around 1 mm is usually enough) – it doesn’t need to be a tight fit.
-<img width="585" height="356" alt="2026-03-17_21-30" src="https://github.com/user-attachments/assets/c0ed4951-259a-446b-8975-dd2af7babeae" />
+<img width="410" height="250" alt="2026-03-17_21-30" src="https://github.com/user-attachments/assets/c0ed4951-259a-446b-8975-dd2af7babeae" />
+<img width="250" height="250" alt="image" src="https://github.com/user-attachments/assets/9384fce9-d605-48db-98b2-d6d859dd891f" />
+
 
