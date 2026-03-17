@@ -2,7 +2,7 @@
 // Requires: use <gears/gears.scad>;  (provides rack_and_pinion())
 // git submodule add https://github.com/chrisspen/gears
 use<gears/gears.scad>;
-
+include <functions.scad>
 // ---------------------------
 // Global parameters
 // ---------------------------
@@ -27,20 +27,6 @@ gear_face_width      = inner_bar_thickness / 2;
 pressure_angle       = 20;
 helix_angle          = 20;
 gear_clearance       = 0.2;  // difference between pinion thickness and groove width
-
-
-// ---------------------------
-// Helper modules
-// ---------------------------
-
-// Rounded square-ish profile (circle + rectangle)
-module squircle(r, foot, fn = circle_resolution) {
-    union() {
-        circle(r = r, $fn = fn);
-        translate([-(r + foot) / 2, 0, 0])
-            square([foot + r, 2 * r], center = true);
-    }
-}
 
 
 // Cross-section of the slide profile
