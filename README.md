@@ -27,3 +27,16 @@ Parametric library for generating any kind of planar pipe fittings. I'm using th
 <img width="286" height="250" alt="image" src="https://github.com/user-attachments/assets/46785499-34db-4f53-a246-540b80d3c5fa" />
 <img width="295" height="250" alt="image" src="https://github.com/user-attachments/assets/2ef5cf5d-c692-4eba-995b-4ddd47e0a3e1" />
 
+Soldering iron tools
+-----------
+Desoldering pump and spool holder. It’s very simple, but it does the job nicely! The model is fully parametric, so you can easily adapt the dimensions to your own tools. The main parameters are:
+- Outer shaft radius → matches the spool inner hole diameter
+- Arm span → matches the spool width
+- Panel width → matches the spool outer diameter
+- Desoldering pump tip radius
+- Desoldering pump body radius
+Add a bit of clearance to each parameter (around 1 mm is usually enough) – it doesn’t need to be a tight fit.
+<img width="410" height="250" alt="2026-03-17_21-30" src="https://github.com/user-attachments/assets/c0ed4951-259a-446b-8975-dd2af7babeae" />
+<img width="250" height="250" alt="image" src="https://github.com/user-attachments/assets/9384fce9-d605-48db-98b2-d6d859dd891f" />
+
+
