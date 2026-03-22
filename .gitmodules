@@ -1,3 +1,6 @@
 [submodule "gears"]
 	path = gears
 	url = https://github.com/chrisspen/gears
+[submodule "BOSL2"]
+	path = BOSL2
+	url = https://github.com/BelfrySCAD/BOSL2
