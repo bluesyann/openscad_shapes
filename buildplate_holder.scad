@@ -5,6 +5,7 @@
 // Author: <bluesyann>
 // License: <MIT>
 //
+include <functions.scad>
 
 // =======================
 // Global parameters
@@ -37,25 +38,6 @@ screw_depth  = 7;
 
 // Cutaway
 cut_ratio    = 0.7; // Fraction of total length removed by the cutaway
-
-
-
-// =======================
-// Utility: rounded rectangle
-// =======================
-//
-// 2D rounded rectangle centered optionally on X/Y.
-//
-module rounded_rect(l, w, r, center=false, xcenter=false, ycenter=false) {
-    translate([
-        (center || xcenter) ? -l/2 : 0,
-        (center || ycenter) ? -w/2 : 0
-    ])
-    translate([r, r])
-        offset(r = r, $fn = 60)
-            // Core rectangle; note that rounding eats 2*r in both directions
-            square([l - 2*r, w - 2*r]);
-}
 
 
 
