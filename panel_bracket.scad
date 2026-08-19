@@ -17,10 +17,10 @@ include <functions.scad>
 // ===== USER PARAMETERS =====
 $fn = 32;
 clearance = 0.2;
-bracket_height = 30;
+bracket_height = 81;
 bracket_thickness = 8;
 ratio = 2; // Ratio between bracket length and thickness
-panel_thickness = 2.9 + clearance;
+panel_thickness = 3.5 + clearance;
 hole_diameter = 2;
 
 // Corner geometry
@@ -50,7 +50,7 @@ module half_bracket() {
                 r = radius
             );
         // Panel rail
-        translate(v = [half_thck, -panel_thickness/2, 0])
+        translate(v = [1.5*half_thck, -panel_thickness/2, 0])
             square(size = [bracket_length, panel_thickness]);
     }
     // Rounded inner corner
@@ -125,5 +125,6 @@ module corner() {
 }
 
 // ===== MAIN =====
-up(1.1 * bracket_height) corner();
-edge();
+//up(1.1 * bracket_height) corner();
+//edge();
+corner();
