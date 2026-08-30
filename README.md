@@ -2,6 +2,13 @@ OpenScad Shapes
 ======
 This repo contains various shapes designed with OpenScad. I try to keep them as parametric as possible, but if you notice bugs or unusual behaviour I would be happy to get your feedback or your PR!
 
+Box joint bump
+-----------
+Feature for adjusting the stepping on a DIY jigsaw-based box joint (finger joint) machine
+
+<img width="200" height="200" alt="2026-08-19_16-58" src="https://github.com/user-attachments/assets/2f5a99c9-26a8-4bcb-a092-f680299052f4" />
+<img width="260" height="200" alt="2026-08-19_17-01" src="https://github.com/user-attachments/assets/e74d359b-c789-4e0d-962e-f8c8ceec8530" />
+
 Build plate holder
 -----------
 Current parameters are for Anycubic Photon Mono 4K 3d printer. I guess it can be adapter to similarly-designed printers.
