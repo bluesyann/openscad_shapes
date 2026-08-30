@@ -1,38 +1,37 @@
-// lid_holder.scad
-// Customizable lid holder for 3D printing
-// Parameters:
-//   length:      Total length of the holder (default: 60)
-//   tip_height:  Height of the tip (adjust to lid thickness, default: 40)
-//   R:           Radius of the holder (default: 10)
-//   outer_radius: Radius of the support hole (default: 5)
-//   inner_radius: Radius of the screw hole (default: 2.5)
+// Customizable lid holder for 3D printing.
+// Set `part` to "support" or "cap" to select the part to render.
 
-// Lid holder length
-length = 50;
+// Which part to render: "support" or "cap".
+part = "support";
 
-// Height of the tip of the holder, to adjust to lid thickness
+// Holder length and tip height, in millimeters.
+holder_length = 50;
 tip_height = 35;
 
-// Radius of the holder
-R = 7;
+// Holder radius, in millimeters.
+holder_radius = 7;
 
-// Fixature geometry
-outer_radius = 4;
-inner_radius = 2.5; // The screw must fit in
+// Support and screw hole radii, in millimeters.
+support_hole_radius = 4;
+screw_hole_radius = 2.5;
 
-angle = acos(tip_height / length);
-base_length = sqrt(length^2 - tip_height^2);
+assert(part == "support" || part == "cap", "part must be \"support\" or \"cap\"");
+assert(holder_length > tip_height, "holder_length must be greater than tip_height");
+assert(support_hole_radius > screw_hole_radius, "support_hole_radius must be greater than screw_hole_radius");
+
+tilt_angle = acos(tip_height / holder_length);
+base_length = sqrt(holder_length^2 - tip_height^2);
 
 $fn = 80;
 
-module body(){            
+module holder_body(){
     // Tilt the cylinder to reach the desired tip height
-    rotate(a = angle, v = [1, 0, 0])
+    rotate(a = tilt_angle, v = [1, 0, 0])
         union() {
             // Main cylinder with rounded edges
-            cylinder(h = length, r = R);
-            sphere(r = R);
-            translate(v = [0, 0, length]) sphere(r = R);
+            cylinder(h = holder_length, r = holder_radius);
+            sphere(r = holder_radius);
+            translate(v = [0, 0, holder_length]) sphere(r = holder_radius);
         }
 }
 
@@ -40,18 +39,18 @@ module support(){
     difference() {
         union() {
             difference() {
-                body();
+                holder_body();
                 // Hole for the support
                 translate(v = [0, -base_length/2, 0])
-                    cylinder(h = tip_height + R, r = outer_radius);
+                    cylinder(h = tip_height + holder_radius, r = support_hole_radius);
             }
             // Merge with the support
             translate(v = [0, -base_length/2, 0])
                 difference() {
                     // Support base
-                    cylinder(h = tip_height/2, r = R);
+                    cylinder(h = tip_height/2, r = holder_radius);
                     // Screw hole
-                    cylinder(h = tip_height/2, r = inner_radius);
+                    cylinder(h = tip_height/2, r = screw_hole_radius);
                 }
         }
 
@@ -64,10 +63,13 @@ module support(){
 module cap(){
     intersection() {
         translate(v = [0, -base_length/2, tip_height*.75])
-            cylinder(h = tip_height + R, r = outer_radius);
-        body();
+            cylinder(h = tip_height + holder_radius, r = support_hole_radius);
+        holder_body();
     }
 }
 
-//support();
-cap();
+if (part == "support") {
+    support();
+} else {
+    cap();
+}
